@@ -14,10 +14,15 @@ namespace Promact.CustomerSuccess.Platform.Data;
 
 public class PlatformDbContext : AbpDbContext<PlatformDbContext>
 {
-    public PlatformDbContext(DbContextOptions<PlatformDbContext> options)
-        : base(options)
+    public PlatformDbContext(DbContextOptions<PlatformDbContext> options) : base(options)
     {
     }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseNpgsql();
+    }
+
 
     public DbSet<Project> Projects { get; set; }
     public DbSet<Document> Documents { get; set; }
